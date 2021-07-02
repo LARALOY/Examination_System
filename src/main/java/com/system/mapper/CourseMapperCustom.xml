@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace 命名空间 当接口和XML文件关联的时候-->
+<mapper namespace="com.system.mapper.CourseMapperCustom">
+<!--唯一的标识全限定名 parameterType类型 传入参数 resultType类型 表示这条SQL返回的结果类型-->
+    <select id="findByPaging" parameterType="PagingVO" resultType="CourseCustom">
+        select course.*, college.collegeName
+        from course, college
+        WHERE course.collegeID = college.collegeID
+        limit #{toPageNo}, #{pageSize}
+--      mySql limit 第一个参数指定返回的第一条记录行的偏移量，第二个参数指定返回的最大记录行数。
+--      SELECT * FROM table LIMIT 5,10; //检索记录行6-15
+    </select>
+
+</mapper>
